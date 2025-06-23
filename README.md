@@ -37,4 +37,4 @@ Real-Time Attendance Monitoring and Analytics
 1. Discussed about the overall `architecture` of the system
 2. Researched about various methods to implement Geolocation verification, eg. using `HTML5 Brwoser API`, `Google Maps Geolocation API`,`ipify` and `ip-api`.
 3. Studied various python libraries exisiting for speech verification like `Resemblyzer`.
-4. Implemented Geolocation verification using `ipify`,`ip-api` and `HTML Browser API`.
+4. Implemented demo Geolocation verification logic using `ipify`,`ip-api` and `HTML Browser API`.
