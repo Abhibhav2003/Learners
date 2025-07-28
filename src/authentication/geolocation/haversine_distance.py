@@ -1,7 +1,7 @@
 import math
 
 def haversine(lat1, lon1, lat2, lon2):
-    R = 6371000 # Radius of Earth
+    R = 6371000 # Radius of Earth in meters
     phi1 = math.radians(lat1)
     phi2 = math.radians(lat2)
     d_phi = math.radians(lat2 - lat1)

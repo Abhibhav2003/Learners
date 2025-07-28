@@ -7,9 +7,6 @@ ip_address = requests.get('http://api.ipify.org').text
 response = requests.get(f'http://ip-api.com/json/{ip_address}?/fields=192511').json()
 
 if not response.get('proxy'):
-    # Don't Grant Access
-    pass
-else:
     # Access Granted
     # Teacher's Coordinates : lat1,lon1
     # Students's Coordinates : lat2,lon2
@@ -27,3 +24,6 @@ else:
 
     if distance <= 15 :
         pass
+else:
+    # Don't Grant Access
+    pass
