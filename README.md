@@ -34,13 +34,26 @@ Real-Time Attendance Monitoring and Analytics
 
 ### Week 1:
 
-1. Discussed about the overall `architecture` of the system
+1. Discussed the overall `architecture` of the system.
 2. Researched about various methods to implement Geolocation verification, eg. using `HTML5 Brwoser API`, `Google Maps Geolocation API`,`ipify` and `ip-api`.
-3. Studied various python libraries exisiting for speech verification like `Resemblyzer`.
+3. Studied various python libraries existing for speech verification like `Resemblyzer`.
 4. Implemented demo Geolocation verification logic using `ipify`,`ip-api` and `HTML Browser API`.
 
 
 ### Week 2:
-1. Implemented gelocation verification.
+1. Implemented geolocation verification.
 2. Implemented face recognition using opencv,cvzone,sklearn etc.
 3. Added blink detection using cvzone for liveness check.
+
+
+### Week 3:
+1. Built the Frontend of the system using HTML,CSS,JavaScript.
+2. Built the Backend using Flask.
+
+### Week 4:
+1. Improve the speech recognition part added phrase checking using speech_recognition.
+2. Shifted from resemblyzer to librosa.
+3. Improved face recognition by shifting to face_recognition library.
+
+
+### Note : The project is still under continuous development, we are still engaged in improving AI authentication for better security.
