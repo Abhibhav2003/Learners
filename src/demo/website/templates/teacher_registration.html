@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Teacher Registration</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f7f9fc; margin:0; padding:0;">
+
+  <div style="max-width: 450px; margin: 50px auto; padding: 25px; background: #fff; border-radius: 8px;
+              box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+
+    <h2 style="text-align:center; margin-bottom: 20px; color: #333;">Teacher Registration Portal</h2>
+
+    <form method="POST" action="{{ url_for('web.teacher_register_post') }}"
+          style="display:flex; flex-direction:column; gap:15px;">
+
+      <div>
+        <label for="teacher_id" style="display:block; font-weight:600; margin-bottom:5px;">Teacher ID:</label>
+        <input type="text" id="teacher_id" name="teacher_id" required
+               style="width:100%; padding:8px; border:1px solid #ccc; border-radius:4px;">
+      </div>
+
+      <div>
+        <label for="username" style="display:block; font-weight:600; margin-bottom:5px;">Username:</label>
+        <input type="text" id="username" name="username" required
+               style="width:100%; padding:8px; border:1px solid #ccc; border-radius:4px;">
+      </div>
+
+      <div>
+        <label for="password" style="display:block; font-weight:600; margin-bottom:5px;">Password:</label>
+        <input type="password" id="password" name="password" required
+               style="width:100%; padding:8px; border:1px solid #ccc; border-radius:4px;">
+      </div>
+
+      <div>
+        <label for="email" style="display:block; font-weight:600; margin-bottom:5px;">Email:</label>
+        <input type="email" id="email" name="email" required
+               style="width:100%; padding:8px; border:1px solid #ccc; border-radius:4px;">
+      </div>
+
+      <button type="submit"
+              style="padding:10px; background:#007BFF; color:#fff; border:none; border-radius:4px;
+                     cursor:pointer; font-size:16px;">
+        Register Teacher
+      </button>
+    </form>
+
+    <p style="margin-top:15px; text-align:center; color:#555;">
+      Already have an account?
+      <a href="{{ url_for('web.teacher_login') }}"
+         style="text-decoration:underline; color:#007BFF; font-weight:bold;">
+        Login here
+      </a>
+    </p>
+  </div>
+
+</body>
+</html>

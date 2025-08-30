@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Multi-Modal Attendance System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <main class="container-narrow" style="text-align:center; padding-top:100px">
+    <h1>Welcome to Multi-Modal Attendance</h1>
+    <p style="color:#555; margin:10px 0 30px">Choose your role to continue</p>
+
+    <div class="grid">
+      <a href="{{ url_for('web.teacher_login') }}" class="card">
+        <div class="icon">👩‍🏫</div>
+        <h2>Teacher</h2>
+        <p>Create sessions and track attendance</p>
+      </a>
+
+      <a href="{{ url_for('web.student_login') }}" class="card">
+        <div class="icon">🎓</div>
+        <h2>Student</h2>
+        <p>Verify & mark attendance</p>
+      </a>
+    </div>
+  </main>
+</body>
+</html>

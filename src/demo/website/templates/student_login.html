@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Multi-Modal Attendance System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    html, body { height: 100%; margin: 0; }
+    body { font-family: 'Poppins', sans-serif; background: transparent; }
+    #vanta-js {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+    }
+    .page { position: relative; z-index: 1; }
+  </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.3/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.trunk.min.js"></script>
+</head>
+<body>
+  <div id="vanta-js"></div>
+
+  <div class="page">
+    <h1 class="heading">Student Login</h1>
+    <div class="container">
+      <!-- POSTs to /student/login -->
+      <form method="POST" action="{{ url_for('web.student_login_post') }}" class="reg">
+
+        <label for="student_id">Student ID</label>
+        <input type="text" id="student_id" name="student_id" placeholder="223004" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="••••••" required>
+
+        <button type="submit">Login</button>
+      </form>
+
+      <p>
+        Don't Have An Account?
+        <a href="{{ url_for('web.student_registration') }}"
+           style="text-decoration:underline; color:#fff; font-weight:bold;">
+          Register
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      VANTA.TRUNK({
+        el: "#vanta-js",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00
+      });
+    });
+  </script>
+</body>
+</html>

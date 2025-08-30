@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Teacher Dashboard{% endblock %}
+
+{% block head_extra %}
+<script>
+    window.TEACHER_ID = {{ (current_user.id if current_user.is_authenticated else 1) | tojson }};
+</script>
+{% endblock %}
+
+{% block body %}
+<header class="topbar">
+  <a class="logo" href="{{ url_for('web.index') }}">←</a>
+  <h1>Teacher Dashboard</h1>
+  <div style="display:flex; gap:10px;">
+    <button id="btnNewSession" class="btn primary">+ New Session</button>
+    <a href="{{ url_for('api.export_attendance') }}" class="btn">⬇ Export Attendance</a>
+  </div>
+</header>
+
+<main class="container-wide" style="padding-top:80px">
+  <section class="panel">
+    <h2>Upcoming &amp; Active Sessions</h2>
+    <div id="sessionList" class="grid"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Past Sessions</h2>
+    <div id="pastList" class="grid"></div>
+  </section>
+</main>
+
+<dialog id="sessionModal">
+  <form id="sessionForm" class="modal-body" method="dialog">
+    <h3 id="modalTitle">Create Session</h3>
+
+    <label>Class Name
+      <input name="className" placeholder="e.g. CS101 - Data Structures" required />
+    </label>
+
+    <div class="grid" style="grid-template-columns: repeat(auto-fit,minmax(200px,1fr));">
+      <label>Date
+        <input type="date" name="date" required />
+      </label>
+
+      <label>Start Time
+        <input type="time" name="start" required />
+      </label>
+
+      <label>End Time (or Duration)
+        <div style="display:flex; gap:8px;">
+          <input type="time" name="end" />
+          <input type="number" name="duration" min="5" step="5" placeholder="mins" />
+        </div>
+      </label>
+    </div>
+
+    <details style="margin:8px 0">
+      <summary>Geofence</summary>
+      <div class="grid" style="grid-template-columns: repeat(auto-fit,minmax(180px,1fr));">
+        <label>Latitude
+          <input type="number" step="any" name="lat" placeholder="e.g. 28.6139" />
+        </label>
+        <label>Longitude
+          <input type="number" step="any" name="lng" placeholder="e.g. 77.2090" />
+        </label>
+        <label>Radius (meters)
+          <input type="number" min="0" step="1" name="radius" placeholder="150" />
+        </label>
+        <button id="btnUseMyLocation" type="button" class="btn">Use my location</button>
+      </div>
+    </details>
+
+    <div class="modal-actions">
+      <button type="button" id="btnCancel" class="btn">Cancel</button>
+      <button type="submit" value="default" class="btn primary">Save</button>
+    </div>
+  </form>
+</dialog>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/teacher.js') }}"></script>
+{% endblock %}

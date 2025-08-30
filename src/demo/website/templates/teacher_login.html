@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Teacher Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/teacherreg.css') }}" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    html, body { height: 100%; margin: 0; }
+    body { font-family: 'Poppins', sans-serif; background: transparent; }
+    #vanta-js {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+    }
+    .page { position: relative; z-index: 1; }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.dots.min.js"></script>
+</head>
+<body>
+  <div id="vanta-js"></div>
+
+  <div class="page">
+    <h1 class="heading">Teacher Login</h1>
+    <div class="container">
+      <form action="{{ url_for('web.teacher_login_post') }}" method="POST" class="reg">
+
+        <label for="email">Email</label>
+        <input type="email" name="email" placeholder="john123@gmail.com" required>
+
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="john@234" required>
+
+        <button type="submit">Login</button>
+      </form>
+
+      <p>Don't have an account?
+        <a href="{{ url_for('web.teacher_registration') }}" style="color:#fff;">Register</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      VANTA.DOTS({
+        el: "#vanta-js",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00
+      });
+    });
+  </script>
+</body>
+</html>

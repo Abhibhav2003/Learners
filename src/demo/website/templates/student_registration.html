@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Registration</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#f7f9fc; margin:0; padding:0; }
+    .container {
+      max-width: 500px; margin: 50px auto; padding: 25px; background: #fff;
+      border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    h2 { text-align:center; margin-bottom:20px; color:#333; }
+    form { display:flex; flex-direction:column; gap:15px; }
+    label { font-weight:600; color:#444; }
+    input {
+      width:100%; padding:8px; border:1px solid #ccc; border-radius:4px; margin-top:5px;
+    }
+    button {
+      padding:10px; border:none; border-radius:4px; cursor:pointer; font-size:15px;
+    }
+    .btn-save { background:#007BFF; color:#fff; }
+    .btn-face { background:#28a745; color:#fff; }
+    .btn-speech { background:#ff5722; color:#fff; }
+    #result { margin-top:15px; font-weight:bold; text-align:center; color:#007BFF; }
+    #speechPhrase { margin-top:10px; font-weight:600; color:#444; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Student Registration</h2>
+
+    <form id="regForm" method="POST" action="/student/register">
+      <label>Student ID: <input type="text" id="student_id" name="student_id" required></label>
+      <label>Username: <input type="text" name="username" required></label>
+      <label>Password: <input type="password" name="password" required></label>
+      <label>Email: <input type="email" name="email" required></label>
+
+      <button type="button" class="btn-face" onclick="registerFace()">Register Face</button>
+      <button type="button" class="btn-speech" onclick="registerSpeech()">Register Speech</button>
+
+      <div id="speechPhrase"></div>
+      <div id="result"></div>
+
+      <!-- Final submit -->
+      <button type="submit" id="submitBtn" class="btn-save">Register & Go to Dashboard</button>
+    </form>
+  </div>
+
+  <script>
+    async function registerFace() {
+      const id = document.getElementById("student_id").value;
+      if (!id) return alert("Enter Student ID first!");
+
+      document.getElementById("result").innerText = "📸 Starting face registration...";
+      const res = await fetch(`/face_register_blink?id=${id}`);
+      const data = await res.json();
+      document.getElementById("result").innerText = data.message || "Face registered.";
+    }
+
+    async function registerSpeech() {
+      const id = document.getElementById("student_id").value;
+      if (!id) return alert("Enter Student ID first!");
+
+      const phraseRes = await fetch(`/speech_phrase`);
+      const phraseData = await phraseRes.json();
+      const phrase = phraseData.phrase;
+
+      document.getElementById("speechPhrase").innerText = `📢 Please read aloud: "${phrase}"`;
+      document.getElementById("result").innerText = "🎤 Recording... Please speak now.";
+
+      const res = await fetch(`/speech_register?id=${id}&phrase=${encodeURIComponent(phrase)}`, {
+        method: "POST"
+      });
+      const data = await res.json();
+
+      if (data.ok) {
+        document.getElementById("result").innerText = "✅ Speech registered!";
+      } else {
+        document.getElementById("result").innerText = "❌ " + (data.message || "Speech registration failed");
+      }
+    }
+  </script>
+</body>
+</html>
