@@ -241,7 +241,6 @@ def get_public_ip():
     r = requests.get("http://api.ipify.org", timeout=2)
     r.raise_for_status()
     return r.text.strip()
-
 def ip_proxy_flag(ip: str):
     url = f"http://ip-api.com/json/{ip}?fields=proxy,hosting,status,message"
     try:
